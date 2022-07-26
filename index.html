@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts - Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- MaterializeCSS Framework - CSS File -->
+    <link rel="stylesheet" href="Resource/Materialize/materialize.min.css">
+
+    <!-- Style Sheet -->    
+    <link rel="stylesheet" href="Resource/css/app.css">
+
+    <title>Resultados EXUMS</title>
+</head>
+<body>
+
+    <div class="row"></div>
+    <div class="row">
+        <div class="col l8 m4">
+            <div class="card card-content-results">
+                <div class="card-content">
+                    <div class="progress loading-bar">
+                        <div class="indeterminate"></div>
+                    </div>
+
+                    <div class="card-title card-title-exums">Resultados de la aplicación EXUMS 2022</div>
+                    <br>
+
+                    <div class="row">
+                        <div class="input-field col l4">
+                            <i class="material-icons prefix">search</i>
+                            <input placeholder="Parámetro a buscar" id="findByParameter" type="text" class="validate center-align">
+                            <label for="findByParameter">Buscar</label>                          
+                        </div>
+
+                        <div class="col l2">
+                            <label>Buscar por</label>
+                            <select id="selectFilter" class="browser-default">
+                                <option value="Folio">Folio</option>
+                                <option value="CCT">CCT</option>
+                                <option value="CURP">CURP</option>
+                            </select>
+                        </div>
+
+                        <div class="col l3">
+                            <a class="btn waves-effect waves-dark blue darken-3 left btn-filter-results">Buscar<i class="material-icons left">youtube_searched_for</i> </a>
+                        </div>
+
+                        <!--
+                        <div class="col l2">
+                            <label>Subsistema</label>
+                            <select id="selectSubsistema" class="browser-default">
+                                <option value="BBM">BBM</option>
+                                <option value="CEB">CEB</option>
+                                <option value="CECYTE">CECYTE</option>
+                                <option value="CONALEP">CONALEP</option>
+                                <option value="DGETAyCM">DGETAyCM</option>
+                                <option value="DGETI">DGETI</option>
+                                <option value="EPRR">EPRR</option>
+                                <option value="SABES">SABES</option>
+                                <option value="UVEG">UVEG</option>
+                            </select>
+                        </div>
+
+                        <div class="col l2">
+                            <label>No. resultados</label>
+                            <select id="numResultados" class="browser-default">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        -->
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class='headFOLIO        center-align data-folio'>Folio EXUMS</th>
+                                <th class='headSUBSISTEMA   center-align'>Subsistema</th>
+                                <th class='headCCT          center-align'>CCT</th>
+                                <th class='headCURP         center-align'>CURP</th>
+                                <th class='headNOMBRE       center-align'>Nombre</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="table-results-container">
+                        <table class="tableResults">
+                            <tbody class="tableResultsBody"> </tbody>
+                        </table>
+                    </div>
+                            
+                </div>
+            </div>
+        </div>
+
+        <div class="col l4 m4">
+            <div class="card card-info-evaluando border-rounded">
+                <div class="card-content card-content-info-evaluando">
+                    <div class="card-title-exums1">Información del sustentante</div>
+
+                    <p> <strong>Folio:            </strong> <span class="txtINFO txtFOLIO_EXUMS right">       </span> </p>
+                    <p> <strong>Subsistema:             </strong> <span class="txtINFO txtSUBSISTEMA right">        </span> </p>
+                    <p> <strong>CCT:                    </strong> <span class="txtINFO txtCCT right">               </span> </p>
+                    <p> <strong>CURP:                   </strong> <span class="txtINFO txtCURP right">              </span> </p>
+                    <p> <strong>Nombre:                 </strong> <span class="txtINFO txtNOMBRE right">            </span> </p>
+                    <p> <strong>Apellido paterno:       </strong> <span class="txtINFO txtAP_PATERNO right">        </span> </p>
+                    <p> <strong>Apellido materno:       </strong> <span class="txtINFO txtAP_MATERNO right">        </span> </p>
+
+                    <div class="card-title-exums2">Resultados de EXUMS</div>
+                    <p> <strong>Habilidad de razonamiento verbal:               </strong> <span class="txtHRV       txtRESULTS right">        </span> </p>
+                    <p> <strong>Habilidad de razonamiento matemático:           </strong> <span class="txtHRM       txtRESULTS right">        </span> </p>
+                    <p> <strong>Español:                                        </strong> <span class="txtESP       txtRESULTS right">        </span> </p>
+                    <p> <strong>Matemáticas:                                    </strong> <span class="txtMAT       txtRESULTS right">        </span> </p>
+                    <p> <strong>Física, Química y Biología:                     </strong> <span class="txtCIENCIAS  txtRESULTS right">        </span> </p>
+                    <p> <strong>Historia, Geografía, Formación Cívica y Ética:  </strong> <span class="txtSOCIALES  txtRESULTS right">        </span> </p>
+                    <p> <strong>Diagnóstico inglés:                             </strong> <span class="txtINGLES    txtRESULTS right">        </span> </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div id="ModalShowMoreInfo" class="modal modal-show-more-info modal-fixed-footer">
+            <div class="modal-content">
+            
+                <div class="row">
+                    <div class="col l5">
+                        <table class="striped">
+                            <thead>
+                                <tr>
+                                    <th colspan=2><h5>Datos de la aplicación</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="right-align"> <strong>Subsistema</strong></td>
+                                    <td class="txtSUBSISTEMA"></td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Folio de aplicación</strong></td>
+                                    <td class="txtFOLIO_APLICACION"></td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Folio EXUMS</strong></td>
+                                    <td class="txtFOLIO_EXUMS"></td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>CCT:</strong></td>
+                                    <td class="txtCCT"></td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>CURP</strong></td>
+                                    <td class="txtCURP"></td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Nombre</strong></td>
+                                    <td class="txtNOMBRE"></td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Apellido paterno</strong></td>
+                                    <td class="txtAP_PATERNO"></td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Apellido materno</strong></td>
+                                    <td class="txtAP_MATERNO"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col l7">
+                        <table class="striped">
+                            <thead>
+                                <tr>
+                                    <th colspan=4><h5>Resultados</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="right-align"> <strong>Español</strong></td>
+                                    <td class="txtESPAÑOL">00.00</td>
+                                    <td class="right-align"> <strong>Habilidades de razonamiento verbal</strong></td>
+                                    <td class="txtHABILIDADES_ESP">00.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Matemáticas</strong></td>
+                                    <td class="txtMATEMATICAS">00.00</td>
+                                    <td class="right-align"> <strong>Habilidades de razonamiento matemático</strong></td>
+                                    <td class="txtHABILIDADES_MAT">00.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Física</strong></td>
+                                    <td class="txtFISICA">00.00</td>
+                                    <td class="right-align"> <strong>Inglés</strong></td>
+                                    <td class="txtINGLES">00.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Química</strong></td>
+                                    <td class="txtQUIMICA">00.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Biología</strong></td>
+                                    <td class="txtBIOLOGIA">00.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Historia</strong></td>
+                                    <td class="txtHISTORIA">00.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Geografía</strong></td>
+                                    <td class="txtGEOGRAFIA">00.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="right-align"> <strong>Formación Cívica y Ética</strong></td>
+                                    <td class="txtFORMACION_CIVICA_ETICA">00.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer modal-footer-val-info-project">
+                <a class="btn-small waves-effect yellow darken-3 btn-update-project-information">Actualizar información</a>
+                <a class="btn-small waves-effect grey lighten-1 modal-close">Cancelar</a>
+            </div>
+        </div>
+    
+<!-- JQuery Library -->
+<script src="Resource/jQuery/jquery-3.2.1.min.js"></script>
+
+<!-- MaterializeCSS Framework - JS File -->
+<script src="Resource/Materialize/materialize.min.js"></script>
+
+<!-- Script -->
+<script src="Resource/js/app.js" ></script>
+
+</body>
+</html>
