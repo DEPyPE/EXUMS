@@ -4,10 +4,13 @@ var server_dir = 'https://script.google.com/macros/s/AKfycbwZvyZo0qcaxvSC1S8qhrO
 function ShowSampleResults(){
     console.log('Mostrando resultados => ');
 
+    $('.loader-container-table').show();
     $.post(server_dir, {TypeFunction: "SampleResults"}, function(DataResults){
         console.log( DataResults );
 
         ShowFindedResults( DataResults, true );
+    }).done(function(){
+        $('.loader-container-table').fadeOut(200);
     });
 }
 
@@ -39,11 +42,31 @@ function ShowFindedResults( DataResults, Show ){
 function FindResultsByFilter(FilterObject, Show){
     console.log('Buscando por ', FilterObject.filter ,' => ');
 
+    if( Show ){
+        $('.loader-container-table').show();
+    }
+
+    $('.loader-container').show();
+    var chip_filter = "<div class='chip chip-search-container'> <i class='txtFilterType'> "+FilterObject.filter+": <strong class='txtFilterValue'>"+FilterObject.value+"</strong> </i></div>";
+    $('.row-filter-data').empty();
+    $('.row-filter-data').html( chip_filter );
+    $('#findByParameter').val('');
+
     $.post(server_dir, {TypeFunction: "FindByFilter", TypeFilter: FilterObject.filter, FilterValue: FilterObject.value}, function(DataResults){
         console.log( DataResults );
         
         ShowFindedResults( DataResults, Show );
         ShowEXUMSResults ( DataResults );
+    }).done(function(DataResults) {
+        var chip_counter = "<div class='chip chip-search-container2'> <i class='txtFilterType'> Número de resultados: <strong class='txtFilterValue'>"+DataResults[1].length+"</strong> </i></div>";
+
+        $('.row-filter-data').append( chip_counter );
+
+        $('.loader-container').fadeOut(200);
+
+        if( Show ){
+            $('.loader-container-table').fadeOut(200);
+        }
     });
 }
 
@@ -82,6 +105,8 @@ $(function(){
     $('.slider').slider();
     $('select').formSelect();
     $('.loading-bar').hide();
+    $('.loader-container').hide();
+    $('.loader-container-table').hide();
 
     $('.txtINFO').text( '--' );
     $('.txtRESULTS').text( '--' );
@@ -97,11 +122,9 @@ $('.tableResultsBody').on('click', 'tr', function(){
     $(this).siblings().removeClass('tr-active');
     $(this).addClass('tr-active');
 
-    $('.loading-bar').show();
     FindResultsByFilter( findByFolio, false );
-    $('.loading-bar').hide();
 });
-    
+
 $('.btn-filter-results').on('click', function(){
     $('.loading-bar').show();
     $('.txtINFO').text( '--' );
