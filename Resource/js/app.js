@@ -5,15 +5,18 @@ function ShowSampleResults(){
     console.log('Mostrando resultados => ');
 
     $('.loader-container-table').show();
+    $('#findByParameter').prop('disabled', 'disabled');
+
     $.post(server_dir, {TypeFunction: "SampleResults"}, function(DataResults){
         console.log( DataResults );
 
         ShowFindedResults( DataResults, true );
     }).done(function(){
         $('.loader-container-table').fadeOut(200);
+        $('#findByParameter').prop('disabled', '');
     });
 }
-
+g
 function ShowFindedResults( DataResults, Show ){
     var txtTable = '';
 
@@ -41,16 +44,17 @@ function ShowFindedResults( DataResults, Show ){
 
 function FindResultsByFilter(FilterObject, Show){
     console.log('Buscando por ', FilterObject.filter ,' => ');
-
-    if( Show ){
-        $('.loader-container-table').show();
-    }
-
-    $('.loader-container').show();
     var chip_filter = "<div class='chip chip-search-container'> <i class='txtFilterType'> "+FilterObject.filter+": <strong class='txtFilterValue'>"+FilterObject.value+"</strong> </i></div>";
+
+    $('.loader-container-table').show();
+    $('.loader-container').show();
     $('.row-filter-data').empty();
     $('.row-filter-data').html( chip_filter );
     $('#findByParameter').val('');
+
+    $('.btn-filter-results').addClass('disabled');
+    $('#findByParameter').prop('disabled', 'disabled');
+    $('#selectFilter').prop('disabled', 'disabled');
 
     $.post(server_dir, {TypeFunction: "FindByFilter", TypeFilter: FilterObject.filter, FilterValue: FilterObject.value}, function(DataResults){
         console.log( DataResults );
@@ -62,11 +66,12 @@ function FindResultsByFilter(FilterObject, Show){
 
         $('.row-filter-data').append( chip_counter );
 
-        $('.loader-container').fadeOut(200);
+        $('#selectFilter').prop('disabled', '');
+        $('#findByParameter').prop('disabled', '');
+        $('.btn-filter-results').removeClass('disabled');
 
-        if( Show ){
-            $('.loader-container-table').fadeOut(200);
-        }
+        $('.loader-container').fadeOut(200);
+        $('.loader-container-table').fadeOut(200);
     });
 }
 
