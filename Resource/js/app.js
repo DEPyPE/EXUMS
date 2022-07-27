@@ -16,7 +16,7 @@ function ShowSampleResults(){
         $('#findByParameter').prop('disabled', '');
     });
 }
-g
+
 function ShowFindedResults( DataResults, Show ){
     var txtTable = '';
 
