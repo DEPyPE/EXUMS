@@ -1,5 +1,19 @@
 
-var server_dir = 'https://script.google.com/macros/s/AKfycbwZvyZo0qcaxvSC1S8qhrOjuU9X0lLU9wJye2W-NKDz0gGHY3ShVeRyQCH35ZSQlqBe/exec';
+var server_dir = 'https://script.google.com/macros/s/AKfycbz48-iFT3ZGmtB6n815pH5qZ81WN47hV2P8axyWkfvC_hYP4q1RRRZh1wAWY3_FDtgY/exec';
+
+function GetDataUsers(){
+    console.log('Mostrando resultados => ');
+
+    $.post(server_dir, {TypeFunction: "GetDataUser"}, function(DataResults){
+        console.log( DataResults );
+    }).done(function(){
+        $('.loader-container-table').fadeOut(200);
+        $('#findByParameter').prop('disabled', '');
+    }).fail(function() {
+        $('.loader-container-table').fadeOut(200);
+        $('#findByParameter').prop('disabled', '');
+    });
+}
 
 function ShowSampleResults(){
     console.log('Mostrando resultados => ');
@@ -12,6 +26,9 @@ function ShowSampleResults(){
 
         ShowFindedResults( DataResults, true );
     }).done(function(){
+        $('.loader-container-table').fadeOut(200);
+        $('#findByParameter').prop('disabled', '');
+    }).fail(function() {
         $('.loader-container-table').fadeOut(200);
         $('#findByParameter').prop('disabled', '');
     });
@@ -72,6 +89,13 @@ function FindResultsByFilter(FilterObject, Show){
 
         $('.loader-container').fadeOut(200);
         $('.loader-container-table').fadeOut(200);
+    }).fail(function() {
+        $('#selectFilter').prop('disabled', '');
+        $('#findByParameter').prop('disabled', '');
+        $('.btn-filter-results').removeClass('disabled');
+
+        $('.loader-container').fadeOut(200);
+        $('.loader-container-table').fadeOut(200);
     });
 }
 
@@ -101,6 +125,7 @@ function ShowEXUMSResults(DataResults){
 }
 
 $(function(){
+
     $('.collapsible').collapsible();
     $('.sidenav').sidenav();
     $('.dropdown-trigger').dropdown();
@@ -117,7 +142,7 @@ $(function(){
     $('.txtRESULTS').text( '--' );
 
     ShowSampleResults();
-    console.log( $('.tableResultsBody tr').children() );
+    GetDataUsers();
 });
 
 $('.tableResultsBody').on('click', 'tr', function(){
@@ -143,6 +168,18 @@ $('.btn-filter-results').on('click', function(){
     FindResultsByFilter( findByFolio, true);
 
     $('.loading-bar').hide();
+});
+
+$('.btn-get-values').on('click', function(){
+
+    $.post(server_dir, {TypeFunction: "TestingGettingData"}, function(DataResults){
+        console.log( DataResults );
+    }).done(function(){
+        console.log('Petición exitosa');
+    }).fail(function() {
+        console.log('Error en AppsScript');
+    });
+    
 });
 
 /*
